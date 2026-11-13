@@ -1,0 +1,2633 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Немново Тур — сплавы на байдарках по Неману, Котре и Августовскому каналу</title>
+<meta name="description" content="16 лет на воде. 85 маршрутов по Неману, Котре и Августовскому каналу: от часовой прогулки до 38 км рафтинга. Сборные группы каждые выходные, база в деревне Немново.">
+<meta name="theme-color" content="#0B1A1D">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Немново Тур — вода не терпит суеты">
+<meta property="og:description" content="Сплавы на байдарках по Неману, Котре и Августовскому каналу. Шестнадцать лет на воде.">
+<meta property="og:image" content="assets/hero.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B1A1D'/%3E%3Cpath d='M14 42c8-6 16-6 24 0M14 34c8-6 16-6 24 0' stroke='%23C9A265' stroke-width='2.5' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   Немново Тур — editorial concept
+   Palette / type / grid tokens
+   ============================================================ */
+:root{
+  --ink:#0B1A1D;
+  --ink-soft:#12282C;
+  --paper:#F2EEE5;
+  --paper-2:#E9E2D3;
+  --sand:#C9A265;
+  --sand-light:#E3C99C;
+  --water:#1C6E78;
+
+  --ink-70:rgba(11,26,29,.72);
+  --ink-55:rgba(11,26,29,.62);
+  --ink-40:rgba(11,26,29,.46);
+  --paper-75:rgba(242,238,229,.78);
+  --paper-55:rgba(242,238,229,.62);
+
+  --line:rgba(11,26,29,.16);
+  --line-strong:rgba(11,26,29,.32);
+  --line-inv:rgba(242,238,229,.2);
+
+  --serif:"Lora",Georgia,"Times New Roman",serif;
+  --sans:"Manrope","Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;
+
+  --pad:clamp(20px,5vw,72px);
+  --sp:clamp(76px,9vw,150px);
+  --head-h:clamp(64px,7vw,84px);
+  --ease:cubic-bezier(.22,.61,.24,1);
+  --maxw:1440px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{
+  -webkit-text-size-adjust:100%;
+  scroll-behavior:smooth;
+  scrollbar-gutter:stable;
+}
+html.lock{overflow:hidden}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.6;
+  letter-spacing:-.006em;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:clip;
+}
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:300;
+  pointer-events:none;
+  opacity:.035;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer}
+::selection{background:var(--sand);color:var(--ink)}
+:where(a,button,input,select,[tabindex]):focus-visible{
+  outline:2px solid var(--sand);
+  outline-offset:4px;
+}
+h1,h2,h3,p,figure,blockquote{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+svg{display:block}
+
+.wrap{
+  width:min(100% - var(--pad)*2, var(--maxw));
+  margin-inline:auto;
+}
+.sec{position:relative;padding-block:var(--sp)}
+[id]{scroll-margin-top:calc(var(--head-h) + 10px)}
+.dark{background:var(--ink);color:var(--paper)}
+.serif{font-family:var(--serif);font-weight:500;letter-spacing:-.02em}
+
+/* micro typography */
+.micro{
+  font-family:var(--sans);
+  font-size:11px;
+  font-weight:500;
+  line-height:1.5;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.label{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  color:var(--sand);
+  font-family:var(--sans);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+}
+.label::before{
+  content:"";
+  width:38px;
+  height:1px;
+  background:currentColor;
+  opacity:.75;
+  flex:none;
+}
+.dark .label{color:var(--sand)}
+.intro .label,.water .label,.frames .label,.how .label{color:var(--water)}
+.sec-title{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(2.15rem,4.5vw,4.1rem);
+  line-height:1.04;
+  letter-spacing:-.028em;
+}
+.sec-title em{
+  font-style:italic;
+  font-weight:400;
+  color:var(--water);
+}
+.dark .sec-title em{color:var(--sand-light)}
+
+/* links */
+.ulink{
+  position:relative;
+  display:inline-block;
+  padding-bottom:2px;
+}
+.ulink::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:1px;
+  background:currentColor;
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .45s var(--ease);
+}
+.ulink:hover::after{transform:scaleX(1)}
+
+/* buttons */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  padding:17px 22px;
+  border:1px solid transparent;
+  font-family:var(--sans);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  line-height:1;
+  transition:background .3s var(--ease),color .3s var(--ease),border-color .3s var(--ease);
+}
+.btn .arr{flex:none;transition:transform .35s var(--ease)}
+.btn:hover .arr{transform:translateX(5px)}
+.btn--sand{background:var(--sand);color:var(--ink)}
+.btn--sand:hover{background:var(--sand-light)}
+.btn--ghost{border-color:rgba(242,238,229,.38);color:var(--paper)}
+.btn--ghost:hover{background:var(--paper);border-color:var(--paper);color:var(--ink)}
+.btn--ink{border-color:var(--ink);color:var(--ink)}
+.btn--ink:hover{background:var(--ink);color:var(--paper)}
+
+/* ============================================================
+   Header
+   ============================================================ */
+.site-head{
+  position:fixed;
+  top:0;left:0;right:0;
+  z-index:80;
+  color:var(--paper);
+  border-bottom:1px solid transparent;
+  transition:background .4s var(--ease),border-color .4s var(--ease),backdrop-filter .4s var(--ease);
+}
+.site-head.is-solid{
+  background:rgba(11,26,29,.93);
+  border-bottom-color:var(--line-inv);
+  -webkit-backdrop-filter:saturate(140%) blur(14px);
+  backdrop-filter:saturate(140%) blur(14px);
+}
+.head-in{
+  display:flex;
+  align-items:center;
+  gap:clamp(22px,4vw,70px);
+  height:var(--head-h);
+  padding-inline:var(--pad);
+}
+.wordmark{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(17px,1.6vw,21px);
+  letter-spacing:.01em;
+  white-space:nowrap;
+}
+.wordmark__dot{
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--sand);
+  flex:none;
+}
+.nav{
+  display:flex;
+  gap:clamp(18px,2.4vw,38px);
+  margin-left:auto;
+}
+.nav a{
+  position:relative;
+  padding-block:6px;
+  font-size:13.5px;
+  font-weight:500;
+  letter-spacing:.01em;
+  color:var(--paper-75);
+  transition:color .25s var(--ease);
+}
+.nav a::after{
+  content:"";
+  position:absolute;
+  left:0;right:0;bottom:0;
+  height:1px;
+  background:var(--sand);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .4s var(--ease);
+}
+.nav a:hover{color:var(--paper)}
+.nav a:hover::after{transform:scaleX(1)}
+.nav a.is-active{color:var(--paper)}
+.nav a.is-active::after{transform:scaleX(1)}
+.head-actions{display:flex;align-items:center;gap:22px;margin-left:auto}
+.nav + .head-actions{margin-left:0}
+.head-phone{
+  font-size:13.5px;
+  font-weight:500;
+  letter-spacing:.02em;
+  white-space:nowrap;
+  color:var(--paper-75);
+  transition:color .25s;
+}
+.head-phone:hover{color:var(--paper)}
+.head-book{padding:13px 18px}
+.burger{
+  display:none;
+  width:44px;height:44px;
+  align-items:center;justify-content:center;
+  flex-direction:column;
+  gap:6px;
+  border:1px solid rgba(242,238,229,.3);
+  flex:none;
+}
+.burger span{
+  display:block;
+  width:18px;height:1px;
+  background:var(--paper);
+  transition:transform .3s var(--ease);
+}
+.burger[aria-expanded="true"] span:first-child{transform:translateY(3.5px) rotate(45deg)}
+.burger[aria-expanded="true"] span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+
+/* mobile menu */
+.mmenu{
+  position:fixed;
+  inset:0;
+  z-index:90;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:calc(var(--head-h) + 24px) var(--pad) 36px;
+  background:var(--ink);
+  color:var(--paper);
+  transform:translateY(-102%);
+  visibility:hidden;
+  transition:transform .55s var(--ease),visibility .55s;
+}
+.mmenu.is-open{transform:translateY(0);visibility:visible}
+.mmenu__top{
+  position:absolute;
+  top:0;left:0;right:0;
+  height:var(--head-h);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding-inline:var(--pad);
+  border-bottom:1px solid var(--line-inv);
+}
+.mmenu__close{
+  width:44px;height:44px;
+  border:1px solid var(--line-inv);
+  color:var(--paper);
+  font-size:22px;
+  line-height:1;
+  display:grid;
+  place-items:center;
+}
+.mmenu__nav{display:flex;flex-direction:column}
+.mmenu__nav a{
+  display:flex;
+  align-items:baseline;
+  gap:18px;
+  padding:14px 0;
+  border-bottom:1px solid var(--line-inv);
+  font-family:var(--serif);
+  font-size:clamp(1.6rem,7vw,2.4rem);
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-.02em;
+}
+.mmenu__nav a span{
+  font-family:var(--sans);
+  font-size:10px;
+  letter-spacing:.16em;
+  color:var(--sand);
+}
+.mmenu__foot{margin-top:34px;display:flex;flex-wrap:wrap;gap:18px 30px;align-items:center;justify-content:space-between}
+.mmenu__foot .micro{color:var(--paper-55)}
+.mmenu__phone{
+  font-family:var(--serif);
+  font-size:clamp(1.2rem,5vw,1.6rem);
+}
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero{
+  position:relative;
+  height:100svh;
+  min-height:660px;
+  max-height:1080px;
+  overflow:hidden;
+  isolation:isolate;
+  background:var(--ink);
+  color:var(--paper);
+}
+.hero__bg{
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:50% 54%;
+  filter:saturate(.82) contrast(1.06) brightness(.88);
+  transform:scale(1.03);
+  animation:hero-drift 28s var(--ease) both;
+}
+@keyframes hero-drift{
+  from{transform:scale(1.09)}
+  to{transform:scale(1.03)}
+}
+.hero__shade{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(180deg,rgba(11,26,29,.78) 0%,rgba(11,26,29,.18) 26%,rgba(11,26,29,.06) 46%,rgba(11,26,29,.55) 74%,rgba(11,26,29,.94) 100%),
+    radial-gradient(120% 80% at 20% 100%,rgba(11,26,29,.45) 0%,rgba(11,26,29,0) 60%);
+}
+.hero__ui{
+  position:relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  padding:calc(var(--head-h) + clamp(18px,2.6vw,32px)) var(--pad) 0;
+}
+.hero__coords{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  color:var(--paper-55);
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.19em;
+  text-transform:uppercase;
+}
+.hero__copy{margin-top:auto;padding-bottom:clamp(26px,4.2vh,52px);max-width:1200px}
+.kicker{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:clamp(18px,2.4vw,28px);
+  color:var(--paper-75);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+}
+.kicker::before{content:"";width:34px;height:1px;background:var(--sand);flex:none}
+.hero h1{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(2.6rem,9vw,8.2rem);
+  line-height:.96;
+  letter-spacing:-.035em;
+  text-wrap:balance;
+  margin-bottom:clamp(20px,2.8vw,34px);
+  text-shadow:0 2px 40px rgba(0,0,0,.22);
+}
+.hero h1 em{
+  font-style:italic;
+  font-weight:400;
+  color:var(--sand-light);
+}
+.hero__lede{
+  max-width:52ch;
+  color:var(--paper-75);
+  font-size:clamp(.95rem,1.15vw,1.0625rem);
+  line-height:1.62;
+}
+.hero__links{
+  display:flex;
+  align-items:center;
+  gap:16px 26px;
+  flex-wrap:wrap;
+  margin-top:clamp(22px,3vw,36px);
+}
+.hero__phone{
+  font-family:var(--serif);
+  font-size:clamp(1.05rem,1.4vw,1.3rem);
+  letter-spacing:0;
+  white-space:nowrap;
+  border-bottom:1px solid rgba(242,238,229,.32);
+  padding-bottom:3px;
+  transition:border-color .3s,color .3s;
+}
+.hero__phone:hover{border-color:var(--sand);color:var(--sand-light)}
+.hero__bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:clamp(24px,4vw,60px);
+  padding-block:clamp(16px,2.6vh,28px);
+  border-top:1px solid rgba(242,238,229,.24);
+}
+.hstats{display:flex;align-items:center;gap:clamp(22px,3.4vw,52px)}
+.hstat{display:flex;align-items:baseline;gap:12px}
+.hstat + .hstat{padding-left:clamp(22px,3.4vw,52px);border-left:1px solid rgba(242,238,229,.2)}
+.hstat b{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(1.7rem,2.6vw,2.6rem);
+  line-height:1;
+  letter-spacing:-.03em;
+}
+.hstat span{
+  max-width:112px;
+  color:var(--paper-55);
+  font-size:10px;
+  font-weight:500;
+  line-height:1.45;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.hero__cta{flex:none}
+
+/* ============================================================
+   Intro
+   ============================================================ */
+.intro{overflow:hidden}
+.intro__grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:clamp(18px,2vw,32px);
+  align-items:start;
+}
+.intro__num{grid-column:1/4;padding-top:6px}
+.intro__num b{
+  display:block;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(8rem,16.5vw,16.5rem);
+  line-height:.78;
+  letter-spacing:-.06em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(11,26,29,.3);
+}
+@supports not (-webkit-text-stroke:1px #000){
+  .intro__num b{color:rgba(11,26,29,.12)}
+}
+.intro__num span{
+  display:block;
+  margin-top:22px;
+  max-width:150px;
+  color:var(--ink-55);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.14em;
+  line-height:1.5;
+  text-transform:uppercase;
+}
+.intro__body{grid-column:5/12}
+.intro__body h2{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(2rem,3.5vw,3.4rem);
+  line-height:1.12;
+  letter-spacing:-.028em;
+  margin-bottom:clamp(26px,3.4vw,44px);
+  text-wrap:balance;
+}
+.intro__body h2 em{font-style:italic;font-weight:400;color:var(--water)}
+.intro__body p:not(.label){
+  max-width:54ch;
+  color:var(--ink-70);
+  font-size:clamp(.98rem,1.1vw,1.0625rem);
+  line-height:1.7;
+}
+.intro__body p + p{margin-top:18px}
+/* Numbers strip */
+.numbers{padding-block:clamp(56px,7vw,100px)}
+.numbers .label{margin-bottom:clamp(30px,4vw,50px)}
+.numbers__grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  border-top:1px solid var(--line-inv);
+}
+.numbers .fact + .fact{border-left-color:var(--line-inv)}
+.numbers .fact span{color:var(--paper-55)}
+.fact{padding:26px clamp(12px,2vw,28px) 0 0}
+.fact + .fact{padding-left:clamp(16px,2.4vw,34px);border-left:1px solid var(--line)}
+.fact b{
+  display:block;
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(2rem,3.6vw,3.5rem);
+  line-height:.95;
+  letter-spacing:-.04em;
+}
+.fact b sup{
+  font-family:var(--sans);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.08em;
+  color:var(--ink-55);
+  vertical-align:top;
+  margin-left:3px;
+}
+.fact span{
+  display:block;
+  margin-top:12px;
+  color:var(--ink-55);
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.13em;
+  line-height:1.5;
+  text-transform:uppercase;
+}
+
+/* ============================================================
+   Route index
+   ============================================================ */
+.index{padding-top:0}
+.index__head{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:clamp(18px,2vw,32px);
+  align-items:end;
+  padding-block:clamp(48px,6vw,84px) clamp(34px,4.5vw,58px);
+  border-top:1px solid var(--line-inv);
+}
+.index__head .label{grid-column:1/-1;margin-bottom:clamp(26px,3.6vw,50px)}
+.index__title{grid-column:1/8}
+.index__title .sec-title{font-size:clamp(2.6rem,6vw,5.4rem);letter-spacing:-.035em}
+.index__aside{
+  grid-column:9/13;
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+  align-items:flex-start;
+}
+.index__aside p{max-width:34ch;color:var(--paper-55);font-size:13.5px;line-height:1.65}
+.sched{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:15px 16px;
+  border:1px solid var(--line-inv);
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.1em;
+  line-height:1.55;
+  text-transform:uppercase;
+}
+.sched__dot{
+  width:6px;height:6px;
+  margin-top:4px;
+  border-radius:50%;
+  background:var(--sand);
+  flex:none;
+}
+.sched b{display:block;font-weight:700}
+.sched span{color:var(--paper-55)}
+
+.routes{position:relative}
+.routes__head{
+  display:grid;
+  grid-template-columns:56px minmax(0,1fr) 92px 108px 208px 24px;
+  gap:16px;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(242,238,229,.65);
+  color:var(--paper-55);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.route{
+  position:relative;
+  isolation:isolate;
+  display:grid;
+  grid-template-columns:56px minmax(0,1fr) 92px 108px 208px 24px;
+  gap:16px;
+  align-items:center;
+  padding:clamp(24px,2.4vw,32px) 0;
+  border-bottom:1px solid var(--line-inv);
+  color:var(--paper);
+  transition:color .32s var(--ease);
+}
+.route::after{
+  content:"";
+  position:absolute;
+  inset:0 -20px;
+  z-index:-1;
+  background:rgba(201,162,101,.1);
+  opacity:0;
+  transition:opacity .32s var(--ease);
+}
+.route:hover,.route:focus-visible{color:var(--paper)}
+.route:hover::after,.route:focus-visible::after{opacity:1}
+.route:focus-visible{outline-offset:2px}
+.rno{
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.14em;
+  color:var(--sand);
+  transition:color .32s;
+}
+.route:hover .rno,.route:focus-visible .rno{color:var(--sand-light)}
+.rname{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(1.5rem,2.2vw,2rem);
+  line-height:1.1;
+  letter-spacing:-.02em;
+  transition:transform .45s var(--ease),color .32s var(--ease);
+}
+.route:hover .rname,.route:focus-visible .rname{transform:translateX(10px);color:var(--sand-light)}
+.route__meta{display:contents}
+.rkm,.rtime{
+  font-size:13.5px;
+  font-weight:500;
+  letter-spacing:.01em;
+  font-variant-numeric:tabular-nums;
+  color:var(--paper-55);
+  transition:color .32s;
+}
+.route:hover .rkm,.route:hover .rtime,
+.route:focus-visible .rkm,.route:focus-visible .rtime{color:var(--paper-75)}
+.rprice{text-align:left;transition:color .32s}
+.rprice b{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(1.1rem,1.7vw,1.5rem);
+  line-height:1.2;
+  letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+.rprice em{
+  display:block;
+  margin-top:4px;
+  font-style:normal;
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.06em;
+  color:var(--paper-55);
+  transition:color .32s;
+}
+.route:hover .rprice em,.route:focus-visible .rprice em{color:var(--paper-75)}
+.rarrow{
+  justify-self:end;
+  color:rgba(242,238,229,.4);
+  transition:color .32s,transform .4s var(--ease);
+}
+.route:hover .rarrow{color:var(--sand);transform:translateX(6px)}
+.routes__note{
+  display:flex;
+  justify-content:space-between;
+  gap:24px;
+  padding-top:20px;
+  color:var(--paper-55);
+  font-size:11px;
+  letter-spacing:.03em;
+}
+
+/* floating preview */
+.peek{
+  position:fixed;
+  top:0;left:0;
+  z-index:70;
+  width:clamp(250px,22vw,360px);
+  pointer-events:none;
+  opacity:0;
+  transform:translate3d(-100px,-100px,0);
+  transition:opacity .28s var(--ease);
+  will-change:transform;
+}
+.peek.is-on{opacity:1}
+.peek__frame{
+  position:relative;
+  aspect-ratio:4/5;
+  overflow:hidden;
+  border:1px solid rgba(242,238,229,.35);
+  background:var(--ink-soft);
+}
+.peek__frame img{
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:saturate(.92) contrast(1.02);
+}
+.peek__cap{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:34px 14px 12px;
+  background:linear-gradient(180deg,rgba(11,26,29,0),rgba(11,26,29,.8));
+  color:var(--paper);
+  font-size:9.5px;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+
+/* ============================================================
+   Manifesto
+   ============================================================ */
+.manifesto{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-end;
+  min-height:clamp(540px,84vh,900px);
+  padding-block:clamp(90px,12vw,160px);
+  background:var(--ink);
+  color:var(--paper);
+}
+.manifesto__bg{
+  position:absolute;
+  inset:-6% 0;
+  width:100%;
+  height:112%;
+  object-fit:cover;
+  object-position:50% 52%;
+  filter:saturate(.72) brightness(.56);
+  z-index:-2;
+  will-change:transform;
+}
+.manifesto::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:linear-gradient(180deg,rgba(11,26,29,.5) 0%,rgba(11,26,29,.12) 40%,rgba(11,26,29,.88) 100%);
+}
+.manifesto__inner{position:relative;max-width:1180px}
+.manifesto .label{margin-bottom:clamp(30px,4vw,56px)}
+.manifesto blockquote{
+  border-left:1px solid var(--sand);
+  padding-left:clamp(20px,3vw,44px);
+  font-family:var(--serif);
+  font-weight:500;
+  font-style:italic;
+  font-size:clamp(1.85rem,4.3vw,4.3rem);
+  line-height:1.13;
+  letter-spacing:-.025em;
+  text-wrap:balance;
+}
+.manifesto blockquote span{color:var(--sand-light)}
+.manifesto__foot{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-top:clamp(28px,4vw,50px);
+  color:var(--paper-55);
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.manifesto__foot::before{content:"";width:38px;height:1px;background:var(--sand);opacity:.8}
+
+/* ============================================================
+   What is included
+   ============================================================ */
+.water{overflow:hidden}
+.water__grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:clamp(18px,2vw,32px);
+  align-items:start;
+}
+.water__num{grid-column:1/4;padding-top:6px}
+.water__num b{
+  display:block;
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(7rem,13vw,13rem);
+  line-height:.8;
+  letter-spacing:-.05em;
+  color:var(--ink);
+}
+.water__num span{
+  display:block;
+  margin-top:22px;
+  max-width:170px;
+  color:var(--ink-55);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.14em;
+  line-height:1.5;
+  text-transform:uppercase;
+}
+.water__text{grid-column:5/13;position:relative;z-index:1;padding-top:clamp(0px,2vw,24px)}
+.water__text .label{margin-bottom:clamp(26px,3.4vw,44px)}
+.water h2{margin-bottom:clamp(24px,3vw,38px)}
+.water__lede{max-width:46ch;color:var(--ink-70);font-size:clamp(.98rem,1.1vw,1.0625rem);line-height:1.7}
+.water__lede strong{font-weight:600;color:var(--ink)}
+.water__list{margin-top:clamp(34px,4.4vw,60px);border-top:1px solid var(--ink)}
+.water__list li{
+  display:grid;
+  grid-template-columns:44px minmax(0,1fr) auto;
+  gap:6px 18px;
+  align-items:baseline;
+  padding:20px 0;
+  border-bottom:1px solid var(--line);
+}
+.water__list .wno{
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.14em;
+  color:var(--water);
+}
+.water__list b{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(1.15rem,1.6vw,1.45rem);
+  letter-spacing:-.015em;
+}
+.water__list li > span{
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--ink-55);
+  text-align:right;
+}
+/* ============================================================
+   Base
+   ============================================================ */
+.base{padding:0;background:var(--ink);color:var(--paper)}
+.base__grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:clamp(600px,82vh,860px);
+}
+.base__text{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:clamp(62px,8vw,130px) clamp(24px,5.2vw,96px);
+  padding-left:max(var(--pad),calc((100vw - var(--maxw)) / 2 + var(--pad)));
+}
+.base__text .label{margin-bottom:clamp(26px,3.6vw,46px)}
+.base__text h2{margin-bottom:clamp(24px,3vw,36px)}
+.base__text h2 em{color:var(--sand-light)}
+.base__copy{max-width:44ch;color:var(--paper-55);font-size:clamp(.96rem,1.1vw,1.0625rem);line-height:1.7}
+.base__list{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0;
+  margin-top:clamp(34px,4.4vw,58px);
+  border-top:1px solid var(--line-inv);
+}
+.base__list li{
+  display:flex;
+  align-items:baseline;
+  gap:18px;
+  padding:18px 18px 18px 0;
+  border-bottom:1px solid var(--line-inv);
+}
+.base__list small{
+  display:block;
+  font-size:9.5px;
+  font-weight:600;
+  letter-spacing:.16em;
+  color:var(--sand);
+  margin-bottom:8px;
+}
+.base__list b{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(1.05rem,1.5vw,1.3rem);
+  letter-spacing:-.015em;
+}
+.base__actions{margin-top:clamp(32px,4vw,48px);display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.base__actions .micro{color:var(--paper-55)}
+.base__media{position:relative;overflow:hidden;min-height:420px}
+.base__media img{
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:saturate(.88) contrast(1.02);
+}
+.base__media figcaption{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:16px;
+  padding:18px clamp(20px,3vw,34px);
+  background:linear-gradient(180deg,rgba(11,26,29,0),rgba(11,26,29,.78));
+  color:var(--paper-75);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+/* ============================================================
+   Gallery
+   ============================================================ */
+.frames{background:var(--paper-2);overflow:hidden}
+.frames__head{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:28px;
+  margin-bottom:clamp(34px,4.6vw,62px);
+}
+.frames__head .label{margin-bottom:clamp(22px,3vw,38px)}
+.frames__hint{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding-bottom:6px;
+  color:var(--ink-55);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+.frames__hint svg{flex:none}
+.frames__ctrl{display:flex;align-items:center;gap:22px;padding-bottom:6px}
+.frames__nav{display:flex;gap:10px}
+.frames__btn{
+  width:46px;height:46px;
+  display:grid;place-items:center;
+  border:1px solid var(--line-strong);
+  color:var(--ink);
+  transition:background .25s,color .25s,border-color .25s,opacity .25s;
+}
+.frames__btn:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.frames__btn:disabled{opacity:.3;pointer-events:none}
+.frames__track{
+  display:flex;
+  gap:clamp(16px,2vw,30px);
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-snap-type:x mandatory;
+  scroll-padding-left:var(--pad);
+  padding:0 var(--pad) 22px;
+  scrollbar-width:thin;
+  scrollbar-color:var(--sand) rgba(11,26,29,.12);
+  cursor:grab;
+  user-select:none;
+  -webkit-user-select:none;
+}
+.frames__track.is-dragging{cursor:grabbing;scroll-snap-type:none}
+.frames__track img{pointer-events:none;-webkit-user-drag:none}
+.frames__track::-webkit-scrollbar{height:3px}
+.frames__track::-webkit-scrollbar-track{background:rgba(11,26,29,.12)}
+.frames__track::-webkit-scrollbar-thumb{background:var(--sand)}
+.frame{
+  flex:0 0 auto;
+  width:clamp(268px,41vw,560px);
+  scroll-snap-align:start;
+}
+.frame:nth-child(even){width:clamp(238px,31vw,420px)}
+.frame img{
+  width:100%;
+  height:clamp(420px,52vh,520px);
+  object-fit:cover;
+  filter:saturate(.9) contrast(1.03);
+  background:var(--ink-soft);
+}
+.frame figcaption{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  padding-top:12px;
+  color:var(--ink-70);
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+}
+.frame figcaption span:first-child{color:var(--water)}
+.frame figcaption span:last-child{text-align:right}
+
+/* ============================================================
+   How it works
+   ============================================================ */
+.how__grid{
+  display:grid;
+  grid-template-columns:repeat(12,1fr);
+  gap:clamp(18px,2vw,32px);
+  align-items:start;
+}
+.how__intro{grid-column:1/5;position:sticky;top:calc(var(--head-h) + 24px)}
+.how__intro .label{margin-bottom:clamp(26px,3.4vw,44px)}
+.how__intro h2{margin-bottom:clamp(22px,2.8vw,36px)}
+.how__intro p:not(.label){max-width:34ch;color:var(--ink-70);font-size:clamp(.96rem,1.1vw,1.05rem);line-height:1.7}
+.how__intro .btn{margin-top:clamp(26px,3vw,40px)}
+.how__steps{grid-column:6/13;border-top:1px solid var(--ink)}
+.how__step{
+  display:grid;
+  grid-template-columns:clamp(64px,7vw,110px) minmax(0,1fr);
+  gap:clamp(16px,2.4vw,36px);
+  align-items:start;
+  padding:clamp(24px,3vw,40px) 0;
+  border-bottom:1px solid var(--line);
+}
+.how__step b{
+  font-family:var(--serif);
+  font-weight:400;
+  font-size:clamp(2.6rem,4.6vw,4.6rem);
+  line-height:.9;
+  letter-spacing:-.04em;
+  color:transparent;
+  -webkit-text-stroke:1px rgba(201,162,101,.75);
+}
+@supports not (-webkit-text-stroke:1px #000){
+  .how__step b{color:rgba(201,162,101,.4)}
+}
+.how__step h3{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(1.3rem,2vw,1.8rem);
+  letter-spacing:-.02em;
+  line-height:1.15;
+  margin-bottom:10px;
+}
+.how__step p{max-width:52ch;color:var(--ink-70);font-size:clamp(.94rem,1.05vw,1.02rem);line-height:1.65}
+
+/* ============================================================
+   Corporate
+   ============================================================ */
+.corp{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  min-height:clamp(640px,92vh,960px);
+  padding-block:clamp(90px,11vw,150px);
+  background:var(--ink);
+  color:var(--paper);
+}
+.corp__bg{
+  position:absolute;
+  inset:-6% 0;
+  width:100%;height:112%;
+  object-fit:cover;
+  object-position:50% 58%;
+  filter:saturate(.8) brightness(.62);
+  z-index:-2;
+  will-change:transform;
+}
+.corp::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  background:
+    linear-gradient(90deg,rgba(11,26,29,.9) 0%,rgba(11,26,29,.62) 48%,rgba(11,26,29,.24) 100%),
+    linear-gradient(180deg,rgba(11,26,29,.35) 0%,rgba(11,26,29,.2) 55%,rgba(11,26,29,.82) 100%);
+}
+.corp__inner{min-width:0}
+.corp .label{margin-bottom:clamp(28px,3.8vw,48px)}
+.corp h2{max-width:15ch;margin-bottom:clamp(24px,3.2vw,40px)}
+.corp h2 em{color:var(--sand-light)}
+.corp__copy{max-width:48ch;color:var(--paper-75);font-size:clamp(.96rem,1.1vw,1.0625rem);line-height:1.7}
+.corp__clients{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  margin-top:clamp(40px,5vw,70px);
+  border-top:1px solid var(--line-inv);
+  max-width:920px;
+}
+.corp__clients li{
+  padding:13px 14px 13px 0;
+  border-bottom:1px solid var(--line-inv);
+  font-size:10px;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--paper-55);
+}
+.corp__actions{margin-top:clamp(34px,4.2vw,54px);display:flex;align-items:center;gap:30px;flex-wrap:wrap}
+.corp__phone{
+  font-family:var(--serif);
+  font-size:clamp(1.1rem,1.5vw,1.35rem);
+  letter-spacing:0;
+  border-bottom:1px solid rgba(242,238,229,.3);
+  padding-bottom:3px;
+  transition:border-color .3s;
+}
+.corp__phone:hover{border-color:var(--sand)}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.foot{
+  background:var(--ink);
+  color:var(--paper);
+  padding-top:clamp(64px,8vw,110px);
+  border-top:1px solid var(--line-inv);
+}
+.foot__mark{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:30px;
+  padding-bottom:clamp(34px,4.4vw,56px);
+}
+.foot__mark b{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(2.4rem,7.6vw,7rem);
+  line-height:.92;
+  letter-spacing:-.04em;
+  display:block;
+}
+.foot__mark b i{font-style:italic;font-weight:400;color:var(--sand)}
+.foot__mark p{
+  max-width:24ch;
+  padding-bottom:6px;
+  color:var(--paper-55);
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.08em;
+  line-height:1.7;
+  text-transform:uppercase;
+  text-align:right;
+}
+.foot__cols{
+  display:grid;
+  grid-template-columns:1.35fr 1fr 1fr 1fr;
+  gap:clamp(24px,3vw,48px);
+  padding-block:clamp(38px,4.6vw,58px);
+  border-top:1px solid var(--line-inv);
+}
+.foot__col h3{
+  margin-bottom:18px;
+  color:var(--sand);
+  font-family:var(--sans);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.foot__col li + li{margin-top:10px}
+.foot__col a,.foot__col p{
+  font-size:13.5px;
+  line-height:1.6;
+  color:var(--paper-75);
+}
+.foot__col a:hover{color:var(--paper)}
+.foot__col .foot-link{
+  font-size:13.5px;
+  line-height:1.6;
+  color:var(--paper-75);
+  text-align:left;
+}
+.foot__col .foot-link:hover{color:var(--paper)}
+.foot__col .big{
+  font-family:var(--serif);
+  font-size:clamp(1.05rem,1.5vw,1.25rem);
+  color:var(--paper);
+  letter-spacing:0;
+}
+.foot__col .muted{color:var(--paper-55);font-size:11.5px}
+.foot__col .sched-inline{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
+.foot__col .sched-inline::before{
+  content:"";
+  width:5px;height:5px;
+  margin-top:8px;
+  border-radius:50%;
+  background:var(--sand);
+  flex:none;
+}
+.foot__bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  padding-block:20px 26px;
+  border-top:1px solid var(--line-inv);
+  color:var(--paper-55);
+  font-size:10px;
+  font-weight:500;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.foot__bottom a:hover{color:var(--paper)}
+
+/* ============================================================
+   Booking modal
+   ============================================================ */
+.modal{
+  position:fixed;
+  inset:0;
+  z-index:120;
+  display:grid;
+  place-items:center;
+  padding:16px;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity .35s var(--ease),visibility .35s;
+}
+.modal.is-open{opacity:1;visibility:visible}
+.modal__backdrop{
+  position:absolute;
+  inset:0;
+  background:rgba(11,26,29,.82);
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
+}
+.modal__panel{
+  position:relative;
+  z-index:1;
+  width:min(100%,980px);
+  max-height:calc(100svh - 32px);
+  overflow:auto;
+  display:grid;
+  grid-template-columns:38% 1fr;
+  background:var(--paper);
+  color:var(--ink);
+  transform:translateY(24px);
+  transition:transform .45s var(--ease);
+  overscroll-behavior:contain;
+}
+.modal.is-open .modal__panel{transform:translateY(0)}
+.modal__side{
+  position:relative;
+  min-height:100%;
+  overflow:hidden;
+  background:var(--ink);
+  color:var(--paper);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:30px;
+}
+.modal__side img{
+  position:absolute;
+  inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  filter:saturate(.85) brightness(.62);
+}
+.modal__side::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(11,26,29,.15),rgba(11,26,29,.86));
+}
+.modal__side-txt{position:relative;z-index:1}
+.modal__side-txt .micro{color:var(--sand);margin-bottom:16px}
+.modal__side-txt p{
+  font-family:var(--serif);
+  font-size:clamp(1.5rem,2.4vw,2.1rem);
+  line-height:1.12;
+  letter-spacing:-.02em;
+}
+.modal__side-txt small{
+  display:block;
+  margin-top:18px;
+  color:var(--paper-55);
+  font-size:10.5px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  line-height:1.6;
+}
+.modal__body{
+  position:relative;
+  padding:clamp(28px,4vw,54px);
+}
+.modal__close{
+  position:absolute;
+  top:16px;right:16px;
+  z-index:2;
+  width:40px;height:40px;
+  display:grid;
+  place-items:center;
+  border:1px solid var(--line-strong);
+  color:var(--ink);
+  transition:background .25s,color .25s,border-color .25s;
+}
+.modal__close:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.modal__body .micro{color:var(--ink-55)}
+.modal__body h2{
+  font-family:var(--serif);
+  font-weight:500;
+  font-size:clamp(1.9rem,3.4vw,2.9rem);
+  line-height:1.04;
+  letter-spacing:-.03em;
+  margin:10px 0 8px;
+}
+.modal__body h2 em{font-style:italic;font-weight:400;color:var(--water)}
+.modal__sub{color:var(--ink-55);font-size:13px;line-height:1.6;max-width:38ch;margin-bottom:clamp(22px,2.6vw,32px)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 22px}
+.field{display:flex;flex-direction:column;gap:7px}
+.field--full{grid-column:1/-1}
+.field label{
+  font-size:9.5px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--ink-55);
+}
+.field input,.field select,.field textarea{
+  width:100%;
+  padding:9px 0 11px;
+  border:0;
+  border-bottom:1px solid var(--line-strong);
+  border-radius:0;
+  background:transparent;
+  font-size:15.5px;
+  font-weight:500;
+  color:var(--ink);
+  transition:border-color .25s;
+}
+.field textarea{resize:vertical;min-height:46px;line-height:1.5}
+.field select{
+  appearance:none;
+  -webkit-appearance:none;
+  padding-right:26px;
+  cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%230B1A1D' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 2px center;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-bottom-color:var(--water)}
+.field input::placeholder,.field textarea::placeholder{color:rgba(11,26,29,.32)}
+.field.has-error input,.field.has-error select{border-bottom-color:#94402C}
+.field__err{
+  display:none;
+  color:#94402C;
+  font-size:10.5px;
+  font-weight:600;
+  letter-spacing:.02em;
+}
+.field.has-error .field__err{display:block}
+.form-actions{grid-column:1/-1;margin-top:10px}
+.form-actions .btn{width:100%}
+.form-note{
+  grid-column:1/-1;
+  color:var(--ink-55);
+  font-size:9.5px;
+  letter-spacing:.06em;
+  line-height:1.5;
+}
+/* success */
+.success{display:none;flex-direction:column;align-items:flex-start;padding-block:8px}
+.modal__body.is-sent .booking-form{display:none}
+.modal__body.is-sent .success{display:flex}
+.success svg{margin-bottom:22px}
+.success h2{margin-top:4px}
+.success p{color:var(--ink-70);font-size:14.5px;line-height:1.65;max-width:40ch}
+.success p b{font-weight:600;color:var(--ink)}
+.success .success__no{
+  margin-top:8px;
+  color:var(--water);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+.success .btn{margin-top:26px}
+.success small{margin-top:16px;color:var(--ink-55);font-size:10px;letter-spacing:.04em}
+.check-ring{
+  stroke-dasharray:150;
+  stroke-dashoffset:150;
+}
+.check-tick{
+  stroke-dasharray:40;
+  stroke-dashoffset:40;
+}
+.is-sent .check-ring{animation:draw .8s var(--ease) forwards}
+.is-sent .check-tick{animation:draw .5s var(--ease) .45s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* ============================================================
+   Reveal + motion
+   ============================================================ */
+[data-reveal]{
+  opacity:0;
+  transform:translateY(26px);
+  transition:opacity .9s var(--ease),transform .9s var(--ease);
+  transition-delay:var(--d,0s);
+}
+[data-reveal].is-in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+  [data-reveal]{opacity:1;transform:none}
+  .hero__bg{transform:scale(1.03)}
+  .manifesto__bg,.corp__bg{transform:none !important}
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width:1240px){
+  .head-phone{display:none}
+}
+@media (max-width:1100px){
+  .nav{display:none}
+  .burger{display:flex}
+  .head-actions{margin-left:auto}
+  .intro__body{grid-column:4/12}
+  .index__title{grid-column:1/8}
+  .index__aside{grid-column:8/13}
+  .routes__head,.route{grid-template-columns:44px minmax(0,1fr) 80px 92px 180px 20px;gap:12px}
+  .water__num{grid-column:1/4}
+  .water__text{grid-column:4/13}
+  .foot__cols{grid-template-columns:1.2fr 1fr 1fr}
+  .foot__col:last-child{grid-column:1/-1;display:flex;gap:40px;align-items:flex-start;flex-wrap:wrap}
+  .foot__col:last-child h3{width:100%;margin-bottom:0}
+}
+@media (max-width:900px){
+  .hero{min-height:620px}
+  .hstat span{display:none}
+  .hstat b{font-size:1.9rem}
+  .hstats{gap:30px}
+  .hstat + .hstat{padding-left:30px}
+  .intro__num{grid-column:1/4}
+  .intro__body{grid-column:4/13}
+  .numbers__grid{grid-template-columns:1fr 1fr}
+  .numbers .fact:nth-child(3){padding-left:0;border-left:0}
+  .numbers .fact:nth-child(n+3){margin-top:22px;padding-top:26px;border-top:1px solid var(--line-inv)}
+  .index__head{grid-template-columns:1fr}
+  .index__head .label{margin-bottom:26px}
+  .index__title,.index__aside{grid-column:1/-1}
+  .index__aside{margin-top:22px;flex-direction:row;flex-wrap:wrap;align-items:flex-start;gap:18px 30px}
+  .index__aside p{max-width:38ch}
+  .routes__head,.route{grid-template-columns:38px minmax(0,1fr) 74px 84px 150px 18px;gap:10px}
+  .water__num{grid-column:1/-1;display:flex;align-items:flex-end;gap:18px;margin-bottom:26px}
+  .water__num b{font-size:clamp(6rem,20vw,9rem)}
+  .water__num span{margin:0 0 6px}
+  .water__text{grid-column:1/-1}
+  .how__intro{grid-column:1/-1;position:static;margin-bottom:34px}
+  .how__steps{grid-column:1/-1}
+  .base__grid{grid-template-columns:1fr}
+  .base__text{padding-left:var(--pad);padding-right:var(--pad);padding-block:clamp(62px,9vw,90px)}
+  .base__media{min-height:clamp(360px,60vh,540px)}
+  .base__media img{position:relative;height:100%;min-height:inherit}
+  .corp__clients{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .foot__cols{grid-template-columns:1fr 1fr;gap:34px}
+  .foot__col:last-child{grid-column:auto;display:block}
+  .foot__col:last-child h3{margin-bottom:18px}
+  .foot__mark{flex-direction:column;align-items:flex-start;gap:18px}
+  .foot__mark p{text-align:left;max-width:38ch}
+  .modal__panel{grid-template-columns:1fr}
+  .modal__side{display:none}
+  .modal__body{padding:30px 22px 26px}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  .head-book{display:none}
+  .hero{height:auto;min-height:100svh;max-height:none}
+  .hero__ui{min-height:100svh;padding-top:calc(var(--head-h) + 20px);padding-bottom:0}
+  .hero__coords{font-size:9px;letter-spacing:.14em}
+  .hero__coords span:last-child{display:none}
+  .hero__copy{padding-top:clamp(60px,14vh,120px);padding-bottom:26px}
+  .hero h1{font-size:clamp(2.55rem,12.6vw,4.4rem)}
+  .hero__lede{max-width:40ch;font-size:14px}
+  .hero__bar{flex-direction:column;align-items:stretch;gap:18px}
+  .hstats{justify-content:space-between}
+  .hstat{flex-direction:column;gap:6px}
+  .hstat + .hstat{padding-left:18px}
+  .hstat span{display:block;font-size:9px;max-width:90px}
+  .hero__links{gap:12px}
+  .hero__links .btn{padding:15px 18px}
+  .hero__phone{align-self:flex-start}
+  .sec{padding-block:clamp(68px,11vw,96px)}
+  .intro__num{grid-column:1/-1;display:flex;align-items:flex-end;gap:18px;margin-bottom:26px}
+  .intro__num b{font-size:clamp(6rem,26vw,9rem)}
+  .intro__num span{margin:0 0 6px;max-width:130px}
+  .intro__body{grid-column:1/-1}
+  .intro__body h2{font-size:clamp(1.9rem,7vw,2.6rem)}
+  .fact{padding-top:20px}
+  .fact b{font-size:clamp(1.8rem,8vw,2.4rem)}
+  .fact span{font-size:9px}
+  .index__title .sec-title{font-size:clamp(2.3rem,10vw,3.4rem)}
+  .index__aside{flex-direction:column;gap:16px}
+  .sched{width:100%}
+  .routes__head{display:none}
+  .route{
+    grid-template-columns:30px minmax(0,1fr) auto;
+    grid-template-areas:
+      "no name price"
+      "no meta price";
+    align-items:start;
+    gap:6px 12px;
+    padding:19px 0;
+  }
+  .rno{grid-area:no;padding-top:5px;font-size:9.5px}
+  .rname{grid-area:name;font-size:1.22rem;line-height:1.15}
+  .route__meta{grid-area:meta;display:flex;gap:14px;margin-top:2px}
+  .rkm,.rtime{font-size:11.5px;color:var(--paper-55)}
+  .rprice{grid-area:price;text-align:right;align-self:center}
+  .rprice b{font-size:1.15rem}
+  .rprice em{font-size:8.5px;letter-spacing:.02em;max-width:96px;margin-left:auto}
+  .rarrow{display:none}
+  .route::after{inset:0 -12px}
+  .route:hover .rname{transform:none}
+  .routes__note{flex-direction:column;gap:8px;font-size:10px}
+  .peek{display:none}
+  .manifesto{min-height:88svh;padding-block:clamp(90px,16vh,130px)}
+  .manifesto blockquote{font-size:clamp(1.65rem,7.2vw,2.4rem)}
+  .water h2{font-size:clamp(2.05rem,9vw,3rem)}
+  .water__num b{font-size:5.4rem}
+  .water__num span{font-size:9px}
+  .water__list li{grid-template-columns:30px minmax(0,1fr);gap:4px 14px;padding:16px 0}
+  .water__list li > span{grid-column:2;text-align:left}
+  .how__step{grid-template-columns:52px minmax(0,1fr);gap:14px}
+  .how__step b{font-size:2.2rem}
+  .base__list{grid-template-columns:1fr}
+  .frames__head{flex-direction:column;align-items:flex-start;gap:18px}
+  .frames__hint{padding-bottom:0}
+  .frame,.frame:nth-child(even){width:78vw}
+  .frame img{height:clamp(300px,52vh,460px)}
+  .corp{min-height:auto;padding-block:100px}
+  .corp h2{font-size:clamp(2.2rem,9.4vw,3.2rem)}
+  .corp__clients{grid-template-columns:1fr 1fr;margin-top:36px}
+  .corp__actions{align-items:flex-start;flex-direction:column;gap:22px}
+  .foot__cols{grid-template-columns:1fr}
+  .foot__mark b{font-size:clamp(2.2rem,12vw,3.6rem)}
+  .foot__bottom{flex-direction:column;align-items:flex-start;gap:8px}
+  .form-grid{grid-template-columns:1fr;gap:18px}
+  .field--full{grid-column:auto}
+  .modal{padding:0}
+  .modal__panel{width:100%;max-height:100svh;min-height:100svh}
+  .modal__body{padding:30px 20px 28px;display:flex;flex-direction:column;justify-content:center}
+  .modal__close{top:10px;right:10px}
+}
+@media (max-width:390px){
+  .hero__coords{font-size:8.5px}
+  .hero h1{font-size:11.6vw}
+  .hstat b{font-size:1.6rem}
+  .hstat span{font-size:8px}
+  .hstats{gap:16px}
+  .hstat + .hstat{padding-left:14px}
+  .intro__num b{font-size:5.4rem}
+  .intro__num span{font-size:9px}
+  .rname{font-size:1.1rem}
+  .rprice b{font-size:1rem}
+  .rprice em{max-width:78px}
+  .corp__clients{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<header class="site-head" id="siteHead">
+  <div class="head-in">
+    <a class="wordmark" href="#top" aria-label="Немново Тур — на главную">
+      <span class="wordmark__dot" aria-hidden="true"></span>
+      Немново Тур
+    </a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#index">Маршруты</a>
+      <a href="#water">Что входит</a>
+      <a href="#base">База</a>
+      <a href="#frames">Кадры</a>
+      <a href="#companies">Компании</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="head-actions">
+      <a class="head-phone" href="tel:+375297801304">+375&nbsp;29&nbsp;780-13-04</a>
+      <button class="btn btn--sand head-book" type="button" data-open-booking>
+        Забронировать
+        <svg class="arr" width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2"/></svg>
+      </button>
+      <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mmenu" id="mobileMenu" aria-hidden="true">
+  <div class="mmenu__top">
+    <span class="wordmark"><span class="wordmark__dot" aria-hidden="true"></span>Немново Тур</span>
+    <button class="mmenu__close" id="menuClose" type="button" aria-label="Закрыть меню">&times;</button>
+  </div>
+  <nav class="mmenu__nav" aria-label="Мобильная навигация">
+    <a href="#index"><span>02</span>Маршруты</a>
+    <a href="#water"><span>04</span>Что входит</a>
+    <a href="#base"><span>05</span>База</a>
+    <a href="#frames"><span>06</span>Кадры</a>
+    <a href="#how"><span>08</span>Как это устроено</a>
+    <a href="#companies"><span>09</span>Компании</a>
+    <a href="#contacts"><span>10</span>Контакты</a>
+  </nav>
+  <div class="mmenu__foot">
+    <button class="btn btn--sand" type="button" data-open-booking>
+      Забронировать
+      <svg class="arr" width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2"/></svg>
+    </button>
+    <a class="mmenu__phone" href="tel:+375297801304">+375&nbsp;29&nbsp;780-13-04</a>
+    <span class="micro">Сб · Вс — 09:30 и 13:30</span>
+  </div>
+</div>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-label="Немново Тур">
+    <img class="hero__bg" src="assets/hero.jpg" width="1900" height="836" alt="Байдарки на Немане у зелёного берега" fetchpriority="high">
+    <div class="hero__shade" aria-hidden="true"></div>
+    <div class="hero__ui">
+      <div class="hero__coords">
+        <span>53°51′ N · 23°50′ E · Гродно</span>
+        <span>Августовский канал · Неман · Котра</span>
+      </div>
+
+      <div class="hero__copy">
+        <p class="kicker">Сплавы на байдарках с 16-летним стажем</p>
+        <h1>Вода не терпит<br><em>суеты.</em></h1>
+        <p class="hero__lede">Неман, Котра и Августовский канал. Сборные группы каждую субботу и воскресенье — от часовой прогулки до 38 километров рафтинга.</p>
+        <div class="hero__links">
+          <a class="btn btn--sand" href="#index">
+            Выбрать маршрут
+            <svg class="arr" width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#how">
+            Как это устроено
+            <svg class="arr" width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__bar">
+        <div class="hstats">
+          <div class="hstat"><b>6–38</b><span>км · длина маршрутов</span></div>
+          <div class="hstat"><b>от&nbsp;55</b><span>руб. · за человека</span></div>
+          <div class="hstat"><b>от&nbsp;6</b><span>человек · в группе</span></div>
+        </div>
+        <a class="hero__phone" href="tel:+375297801304">+375&nbsp;29&nbsp;780-13-04</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 01 INTRO ============ -->
+  <section class="sec intro" id="about">
+    <div class="wrap">
+      <div class="intro__grid">
+        <div class="intro__num" data-reveal>
+          <b>16</b>
+          <span>лет мы выходим на воду</span>
+        </div>
+        <div class="intro__body">
+          <p class="label" data-reveal>01 / Немново Тур</p>
+          <h2 data-reveal style="--d:.05s">Мы не продаём туры.<br>Мы вывозим людей <em>на воду.</em></h2>
+          <p data-reveal style="--d:.1s">Немново Тур — гродненская команда, которая шестнадцать лет организует сплавы на байдарках по Неману, Котре и Августовскому каналу. За плечами — 85 маршрутов, 34 компании-клиента и восемь наград туристских конкурсов 2007–2018 годов.</p>
+          <p data-reveal style="--d:.15s">База — в деревне Немново на Августовском канале: хостел, палаточное поле, беседки и верёвочный парк. Отсюда — трансфер к стартам маршрутов и ночлег после воды.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 ROUTE INDEX ============ -->
+  <section class="sec index dark" id="index">
+    <div class="wrap">
+      <div class="index__head">
+        <p class="label">02 / Индекс маршрутов</p>
+        <div class="index__title">
+          <h2 class="sec-title" data-reveal>Индекс<br><em>маршрутов</em></h2>
+        </div>
+        <div class="index__aside">
+          <p data-reveal>Считаем не километры, а часы на воде. Цены — за человека; трансфер — отдельной строкой, если не включён в цену. Нажмите на строку, чтобы оставить заявку.</p>
+          <div class="sched" data-reveal style="--d:.08s">
+            <span class="sched__dot" aria-hidden="true"></span>
+            <span><b>Сборные группы</b><span>каждую субботу и воскресенье · 09:30 и 13:30</span></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="routes">
+        <div class="routes__head" aria-hidden="true">
+          <span>№</span>
+          <span>Маршрут</span>
+          <span>Длина</span>
+          <span>Время</span>
+          <span>Цена за человека</span>
+          <span></span>
+        </div>
+
+        <a class="route" href="#" data-book="Августовское колечко" data-img="assets/avgust.jpg" data-km="9 км">
+          <span class="rno">01</span>
+          <span class="rname">Августовское колечко</span>
+          <span class="route__meta"><span class="rkm">9&nbsp;км</span><span class="rtime">3,5–4&nbsp;ч</span></span>
+          <span class="rprice"><b>60&nbsp;руб.</b><em>+ 25&nbsp;руб. трансфер</em></span>
+          <span class="rarrow" aria-hidden="true">
+            <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" stroke-width="1.1"/></svg>
+          </span>
+        </a>
+
+        <a class="route" href="#" data-book="Чёрная Ганча-22" data-img="assets/chernaya.jpg" data-km="22 км">
+          <span class="rno">02</span>
+          <span class="rname">Чёрная Ганча-22</span>
+          <span class="route__meta"><span class="rkm">22&nbsp;км</span><span class="rtime">7–8&nbsp;ч</span></span>
+          <span class="rprice"><b>80&nbsp;руб.</b><em>+ 35&nbsp;руб. трансфер</em></span>
+          <span class="rarrow" aria-hidden="true">
+            <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" stroke-width="1.1"/></svg>
+          </span>
+        </a>
+
+        <a class="route" href="#" data-book="Котра" data-img="assets/kotra.jpg" data-km="15 км">
+          <span class="rno">03</span>
+          <span class="rname">Котра</span>
+          <span class="route__meta"><span class="rkm">15&nbsp;км</span><span class="rtime">6,5&nbsp;ч</span></span>
+          <span class="rprice"><b>95&nbsp;руб.</b></span>
+          <span class="rarrow" aria-hidden="true">
+            <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" stroke-width="1.1"/></svg>
+          </span>
+        </a>
+
+        <a class="route" href="#" data-book="Нямноўскі рафтынг" data-img="assets/rafting.jpg" data-km="38 км">
+          <span class="rno">04</span>
+          <span class="rname">Нямноўскі рафтынг</span>
+          <span class="route__meta"><span class="rkm">38&nbsp;км</span><span class="rtime">7–8&nbsp;ч</span></span>
+          <span class="rprice"><b>75&nbsp;руб.</b><em>+ 25&nbsp;руб. трансфер</em></span>
+          <span class="rarrow" aria-hidden="true">
+            <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" stroke-width="1.1"/></svg>
+          </span>
+        </a>
+
+        <a class="route" href="#" data-book="Мифическая Котра" data-img="assets/mystic.jpg" data-km="16 км">
+          <span class="rno">05</span>
+          <span class="rname">Мифическая Котра</span>
+          <span class="route__meta"><span class="rkm">16&nbsp;км</span><span class="rtime">4&nbsp;ч</span></span>
+          <span class="rprice"><b>60&nbsp;руб.</b><em>+ 35&nbsp;руб. трансфер</em></span>
+          <span class="rarrow" aria-hidden="true">
+            <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" stroke-width="1.1"/></svg>
+          </span>
+        </a>
+
+        <a class="route" href="#" data-book="Неман — дивная река" data-img="assets/neman.jpg" data-km="20 км">
+          <span class="rno">06</span>
+          <span class="rname">Неман — дивная река</span>
+          <span class="route__meta"><span class="rkm">20&nbsp;км</span><span class="rtime">3&nbsp;ч</span></span>
+          <span class="rprice"><b>70&nbsp;руб.</b><em>трансфер включён</em></span>
+          <span class="rarrow" aria-hidden="true">
+            <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" stroke-width="1.1"/></svg>
+          </span>
+        </a>
+
+        <a class="route" href="#" data-book="Прогулка по Неману" data-img="assets/walk.jpg" data-km="6 км">
+          <span class="rno">07</span>
+          <span class="rname">Прогулка по Неману</span>
+          <span class="route__meta"><span class="rkm">6&nbsp;км</span><span class="rtime">1&nbsp;ч</span></span>
+          <span class="rprice"><b>55&nbsp;руб.</b><em>+ 5&nbsp;руб. трансфер</em></span>
+          <span class="rarrow" aria-hidden="true">
+            <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" stroke-width="1.1"/></svg>
+          </span>
+        </a>
+
+        <a class="route" href="#" data-book="Зимний сплав по Неману" data-img="assets/winter.jpg" data-km="15 км">
+          <span class="rno">08</span>
+          <span class="rname">Зимний сплав по Неману</span>
+          <span class="route__meta"><span class="rkm">15&nbsp;км</span><span class="rtime">2&nbsp;ч</span></span>
+          <span class="rprice"><b>70&nbsp;руб.</b></span>
+          <span class="rarrow" aria-hidden="true">
+            <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" stroke-width="1.1"/></svg>
+          </span>
+        </a>
+
+        <a class="route" href="#" data-book="Веломаршрут «Код Гродно»" data-img="assets/velo.jpg" data-km="около 3 ч">
+          <span class="rno">09</span>
+          <span class="rname">Веломаршрут «Код Гродно»</span>
+          <span class="route__meta"><span class="rkm">—</span><span class="rtime">около 3&nbsp;ч</span></span>
+          <span class="rprice"><b>по запросу</b></span>
+          <span class="rarrow" aria-hidden="true">
+            <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" stroke-width="1.1"/></svg>
+          </span>
+        </a>
+
+        <a class="route" href="#" data-book="Пешеходный маршрут № 405 «Немновский»" data-img="assets/spring.jpg" data-km="4 км">
+          <span class="rno">10</span>
+          <span class="rname">Пешеходный маршрут № 405 «Немновский»</span>
+          <span class="route__meta"><span class="rkm">4&nbsp;км</span><span class="rtime">—</span></span>
+          <span class="rprice"><b>по запросу</b></span>
+          <span class="rarrow" aria-hidden="true">
+            <svg width="20" height="10" viewBox="0 0 20 10" fill="none"><path d="M0 5h18M14 1l4 4-4 4" stroke="currentColor" stroke-width="1.1"/></svg>
+          </span>
+        </a>
+      </div>
+
+      <div class="routes__note">
+        <span>Трансфер — отдельной строкой, если не включён в цену. Цены — за человека.</span>
+        <span>Сборные сплавы — сб и вс, 09:30 и 13:30</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 MANIFESTO ============ -->
+  <section class="manifesto" aria-label="Манифест">
+    <img class="manifesto__bg" src="assets/team.jpg" width="900" height="600" alt="Звёздное небо над рекой" loading="lazy">
+    <div class="wrap">
+      <div class="manifesto__inner">
+        <p class="label" data-reveal>03 / Манифест</p>
+        <blockquote data-reveal style="--d:.06s">Река не спрашивает, кто ты на берегу. Она просто несёт — и возвращает <span>другим человеком.</span></blockquote>
+        <p class="manifesto__foot" data-reveal style="--d:.12s">Немново Тур · с 2010 года</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 WHAT IS INCLUDED ============ -->
+  <section class="sec water" id="water">
+    <div class="wrap">
+      <div class="water__grid">
+        <div class="water__num" data-reveal>
+          <b>85</b>
+          <span>маршрутов за 16 лет — от часовой прогулки до 38 км рафтинга</span>
+        </div>
+        <div class="water__text">
+          <p class="label" data-reveal>04 / Что входит</p>
+          <h2 class="sec-title" data-reveal>В цену входит<br><em>река.</em></h2>
+          <p class="water__lede" data-reveal>А ещё — лодка, снаряжение и инструктор, который ведёт группу от старта до финиша. Трансфер к старту на большинстве маршрутов идёт отдельной строкой — от 5 до 35 рублей.</p>
+          <ul class="water__list" data-reveal>
+            <li><span class="wno">01</span><b>Байдарка и снаряжение</b><span>весло · спасжилет · палатка</span></li>
+            <li><span class="wno">02</span><b>Инструктор-спасатель</b><span>на воде, с группой</span></li>
+            <li><span class="wno">03</span><b>Доставка к старту и обратно</b><span>трансфер к старту · по маршруту</span></li>
+            <li><span class="wno">04</span><b>Группы от 6 человек</b><span>сборные и корпоративные</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 BASE ============ -->
+  <section class="base" id="base">
+    <div class="base__grid">
+      <div class="base__text">
+        <p class="label" data-reveal>05 / База отдыха</p>
+        <h2 class="sec-title" data-reveal>Ночлег на<br><em>Августовском канале.</em></h2>
+        <p class="base__copy" data-reveal>База отдыха в деревне Немново — прямо на Августовском канале. Хостел, палаточное поле, беседки с очагом и верёвочный парк: сюда возвращаемся после воды и остаёмся на ночь.</p>
+        <ul class="base__list" data-reveal>
+          <li><small>01</small><b>Хостел и палаточное поле</b></li>
+          <li><small>02</small><b>Беседки с очагом</b></li>
+          <li><small>03</small><b>Верёвочный парк рядом</b></li>
+        </ul>
+        <div class="base__actions" data-reveal>
+          <button class="btn btn--ghost" type="button" data-open-booking data-route="Проживание на базе">
+            Забронировать ночь
+            <svg class="arr" width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2"/></svg>
+          </button>
+          <span class="micro">Гродненский район · Августовский канал</span>
+        </div>
+      </div>
+      <figure class="base__media">
+        <img src="assets/lock.jpg" width="993" height="952" alt="Шлюз Августовского канала с байдарками" loading="lazy">
+        <figcaption><span>Шлюз · Августовский канал</span><span>53°51′ N</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 06 FRAMES ============ -->
+  <section class="sec frames" id="frames">
+    <div class="wrap">
+      <div class="frames__head">
+        <div>
+          <p class="label" data-reveal>06 / Кадры</p>
+          <h2 class="sec-title" data-reveal>Река,<br><em>как она есть.</em></h2>
+        </div>
+        <div class="frames__ctrl">
+          <p class="frames__hint" aria-hidden="true">
+            Листайте
+            <svg width="24" height="9" viewBox="0 0 24 9" fill="none"><path d="M0 4.5h22M18 1l4 3.5-4 3.5" stroke="currentColor" stroke-width="1.1"/></svg>
+          </p>
+          <div class="frames__nav">
+            <button class="frames__btn" id="framePrev" type="button" aria-label="Предыдущие кадры">
+              <svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M18 5H2M6 1L2 5l4 4" stroke="currentColor" stroke-width="1.2"/></svg>
+            </button>
+            <button class="frames__btn" id="frameNext" type="button" aria-label="Следующие кадры">
+              <svg width="18" height="10" viewBox="0 0 18 10" fill="none" aria-hidden="true"><path d="M0 5h16M12 1l4 4-4 4" stroke="currentColor" stroke-width="1.2"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="frames__track" tabindex="0" role="region" aria-label="Галерея фотографий — прокручивается по горизонтали">
+      <figure class="frame">
+        <img src="assets/group.jpg" width="900" height="596" alt="Закат над рекой и нос байдарки" loading="lazy">
+        <figcaption><span>01</span><span>Последний километр</span></figcaption>
+      </figure>
+      <figure class="frame">
+        <img src="assets/sunset.jpg" width="1900" height="1258" alt="Закат над Неманом" loading="lazy">
+        <figcaption><span>02</span><span>Неман · закат</span></figcaption>
+      </figure>
+      <figure class="frame">
+        <img src="assets/night.jpg" width="900" height="675" alt="Вечерний Неман в зелёных берегах" loading="lazy">
+        <figcaption><span>03</span><span>Неман · вечер</span></figcaption>
+      </figure>
+      <figure class="frame">
+        <img src="assets/team.jpg" width="900" height="600" alt="Ночное небо над водой" loading="lazy">
+        <figcaption><span>04</span><span>Ночное небо над водой</span></figcaption>
+      </figure>
+      <figure class="frame">
+        <img src="assets/h1.jpg" width="900" height="675" alt="Байдарки на воде под мостом" loading="lazy">
+        <figcaption><span>05</span><span>Перед стартом</span></figcaption>
+      </figure>
+      <figure class="frame">
+        <img src="assets/spring.jpg" width="900" height="600" alt="Байдарки и вёсла на берегу" loading="lazy">
+        <figcaption><span>06</span><span>Инвентарь · Немново</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 07 NUMBERS ============ -->
+  <section class="sec numbers dark" aria-label="Немново Тур в цифрах">
+    <div class="wrap">
+      <p class="label" data-reveal>07 / Цифры</p>
+      <div class="numbers__grid" data-reveal>
+        <div class="fact"><b data-count="16">16</b><span>лет на воде</span></div>
+        <div class="fact"><b data-count="85">85</b><span>маршрутов</span></div>
+        <div class="fact"><b data-count="34">34</b><span>компании-клиента</span></div>
+        <div class="fact"><b data-count="8">8</b><span>наград<br>2007–2018</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 08 HOW ============ -->
+  <section class="sec how" id="how">
+    <div class="wrap how__grid">
+      <div class="how__intro">
+        <p class="label" data-reveal>08 / Как это устроено</p>
+        <h2 class="sec-title" data-reveal>Четыре шага<br><em>до воды.</em></h2>
+        <p data-reveal>От заявки до старта — один звонок. Снаряжение, инструкторов, трансфер и ночлег берём на себя.</p>
+        <button class="btn btn--ink" type="button" data-open-booking data-reveal>
+          Оставить заявку
+          <svg class="arr" width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2"/></svg>
+        </button>
+      </div>
+      <ol class="how__steps">
+        <li class="how__step" data-reveal>
+          <b aria-hidden="true">01</b>
+          <div>
+            <h3>Выбираете маршрут</h3>
+            <p>Индекс выше: длина, время и цена за человека. Не уверены — позвоните, подберём под вашу группу.</p>
+          </div>
+        </li>
+        <li class="how__step" data-reveal style="--d:.05s">
+          <b aria-hidden="true">02</b>
+          <div>
+            <h3>Оставляете заявку</h3>
+            <p>Кнопка «Забронировать» или звонок. Перезвоним в рабочее время, уточним дату и состав группы.</p>
+          </div>
+        </li>
+        <li class="how__step" data-reveal style="--d:.1s">
+          <b aria-hidden="true">03</b>
+          <div>
+            <h3>Встречаемся на старте</h3>
+            <p>Трансфер к старту или своя машина. Инструктаж, жилеты, вёсла — и лодки на воде.</p>
+          </div>
+        </li>
+        <li class="how__step" data-reveal style="--d:.15s">
+          <b aria-hidden="true">04</b>
+          <div>
+            <h3>Идём по воде</h3>
+            <p>Инструктор ведёт группу от старта до финиша. После воды — беседка, очаг и ночлег на базе по желанию.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ 09 CORPORATE ============ -->
+  <section class="corp" id="companies">
+    <img class="corp__bg" src="assets/sunset.jpg" width="1900" height="1258" alt="Закат над Неманом" loading="lazy">
+    <div class="wrap corp__inner">
+      <p class="label" data-reveal>09 / Компании</p>
+      <h2 class="sec-title" data-reveal>Соберём сплав<br><em>под вашу компанию.</em></h2>
+      <p class="corp__copy" data-reveal>От 6 до 60 человек: сплавы, веломаршруты, верёвочный парк и беседки на базе. 34 компании уже вывозили команды на Неман и Котру — от EPAM и МТС до Беларусбанка и БНТУ. Один день, который не нужно придумывать.</p>
+      <ul class="corp__clients" data-reveal aria-label="Компании-клиенты">
+        <li>EPAM</li>
+        <li>МТС</li>
+        <li>Беларусбанк</li>
+        <li>БелВЭБ</li>
+        <li>Гроднооблгаз</li>
+        <li>Евроопт</li>
+        <li>БНТУ</li>
+        <li>34 компании</li>
+      </ul>
+      <div class="corp__actions" data-reveal>
+        <button class="btn btn--sand" type="button" data-open-booking data-route="Корпоратив">
+          Обсудить корпоратив
+          <svg class="arr" width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2"/></svg>
+        </button>
+        <a class="corp__phone" href="tel:+375297801304">+375&nbsp;29&nbsp;780-13-04</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ 08 FOOTER ============ -->
+<footer class="foot" id="contacts">
+  <div class="wrap">
+    <div class="foot__mark">
+      <b>Немново <i>Тур</i></b>
+      <p>Сплавы по Неману, Котре и Августовскому каналу. Гродно, Беларусь.</p>
+    </div>
+
+    <div class="foot__cols">
+      <div class="foot__col">
+        <h3>Маршруты</h3>
+        <ul>
+          <li><button class="ulink foot-link" type="button" data-open-booking data-route="Августовское колечко">Августовское колечко</button></li>
+          <li><button class="ulink foot-link" type="button" data-open-booking data-route="Чёрная Ганча-22">Чёрная Ганча-22</button></li>
+          <li><button class="ulink foot-link" type="button" data-open-booking data-route="Котра">Котра</button></li>
+          <li><button class="ulink foot-link" type="button" data-open-booking data-route="Нямноўскі рафтынг">Нямноўскі рафтынг</button></li>
+          <li><button class="ulink foot-link" type="button" data-open-booking data-route="Прогулка по Неману">Прогулка по Неману</button></li>
+          <li><a class="ulink" href="#index">Все маршруты →</a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h3>Компания</h3>
+        <ul>
+          <li><a class="ulink" href="#about">О нас</a></li>
+          <li><a class="ulink" href="#water">Что входит</a></li>
+          <li><a class="ulink" href="#base">База отдыха</a></li>
+          <li><a class="ulink" href="#frames">Кадры</a></li>
+          <li><a class="ulink" href="#how">Как это устроено</a></li>
+          <li><a class="ulink" href="#companies">Корпоративам</a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h3>Контакты</h3>
+        <ul>
+          <li><a class="big" href="tel:+375152490729">+375&nbsp;152&nbsp;49-07-29</a></li>
+          <li class="muted">офис, Гродно</li>
+          <li><a class="big" href="tel:+375297801304">+375&nbsp;29&nbsp;780-13-04</a></li>
+          <li class="muted">МТС · Viber · Telegram</li>
+          <li><a class="big" href="tel:+375296011637">+375&nbsp;29&nbsp;601-16-37</a></li>
+          <li class="muted">A1</li>
+          <li style="margin-top:18px"><a href="mailto:office@nemnovotour.by">office@nemnovotour.by</a></li>
+          <li class="muted" style="margin-top:18px">Пн–Пт · 9:00–17:00</li>
+          <li><p class="sched-inline">Сборные — сб и вс, 09:30 и 13:30</p></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h3>Реквизиты</h3>
+        <ul>
+          <li><p>ООО «Немново Тур»</p></li>
+          <li class="muted">УНП 591535043</li>
+          <li style="margin-top:18px"><p>230015, г. Гродно,<br>ул. Богуцкого 2/1</p></li>
+          <li style="margin-top:18px"><p>База отдыха:<br>д. Немново, Гродненский район,<br>Августовский канал</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot__bottom">
+      <span>© 2026 ООО «Немново Тур» · УНП 591535043</span>
+      <span>53°51′ N · 23°50′ E</span>
+      <a href="#top">Наверх ↑</a>
+    </div>
+  </div>
+</footer>
+
+<!-- floating route preview -->
+<div class="peek" id="peek" aria-hidden="true">
+  <div class="peek__frame">
+    <img id="peekImg" src="assets/avgust.jpg" width="900" height="862" alt="">
+    <span class="peek__cap"><span id="peekName">Августовское колечко</span><span id="peekKm">9&nbsp;км</span></span>
+  </div>
+</div>
+
+<!-- ============ BOOKING MODAL ============ -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal__backdrop" data-close-modal></div>
+  <div class="modal__panel">
+    <div class="modal__side" aria-hidden="true">
+      <img src="assets/group.jpg" width="900" height="596" alt="" loading="lazy">
+      <div class="modal__side-txt">
+        <p class="micro">Заявка на воду</p>
+        <p>Один звонок —<br>и лодка ждёт.</p>
+        <small>Сборные — сб и вс, 09:30 и 13:30.<br>Ответим в рабочее время.</small>
+      </div>
+    </div>
+
+    <div class="modal__body" id="modalBody">
+      <button class="modal__close" type="button" data-close-modal aria-label="Закрыть окно заявки">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.3"/></svg>
+      </button>
+
+      <form class="booking-form" id="bookingForm" novalidate>
+        <p class="micro">Бронирование</p>
+        <h2 id="modalTitle">Оставьте <em>заявку.</em></h2>
+        <p class="modal__sub">Перезвоним в рабочее время, уточним дату и маршрут.</p>
+
+        <div class="form-grid">
+          <div class="field field--full">
+            <label for="fName">Имя</label>
+            <input id="fName" name="name" type="text" autocomplete="name" placeholder="Как к вам обращаться" required>
+            <span class="field__err" id="errName">Укажите имя — хотя бы два символа</span>
+          </div>
+
+          <div class="field field--full">
+            <label for="fPhone">Телефон</label>
+            <input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+375 __ ___ __ __" required>
+            <span class="field__err" id="errPhone">Проверьте номер — нужно минимум 9 цифр</span>
+          </div>
+
+          <div class="field field--full">
+            <label for="fRoute">Маршрут</label>
+            <select id="fRoute" name="route" required>
+              <option value="">Выберите маршрут</option>
+              <option>Августовское колечко</option>
+              <option>Чёрная Ганча-22</option>
+              <option>Котра</option>
+              <option>Нямноўскі рафтынг</option>
+              <option>Мифическая Котра</option>
+              <option>Неман — дивная река</option>
+              <option>Прогулка по Неману</option>
+              <option>Зимний сплав по Неману</option>
+              <option>Веломаршрут «Код Гродно»</option>
+              <option>Пешеходный маршрут № 405 «Немновский»</option>
+              <option>Корпоратив</option>
+              <option>Проживание на базе</option>
+            </select>
+            <span class="field__err">Выберите маршрут</span>
+          </div>
+
+          <div class="field">
+            <label for="fDate">Дата</label>
+            <input id="fDate" name="date" type="date" required>
+            <span class="field__err">Укажите дату</span>
+          </div>
+
+          <div class="field">
+            <label for="fPeople">Человек</label>
+            <input id="fPeople" name="people" type="number" min="1" inputmode="numeric" value="2" required>
+            <span class="field__err">Минимум один человек</span>
+          </div>
+
+          <div class="field field--full">
+            <label for="fComment">Комментарий</label>
+            <textarea id="fComment" name="comment" rows="2" placeholder="Дети в группе, свои палатки, вопросы — всё, что важно знать"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn--sand" type="submit">
+              Отправить заявку
+              <svg class="arr" width="16" height="9" viewBox="0 0 16 9" fill="none" aria-hidden="true"><path d="M0 4.5h14M10.5 1l3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.2"/></svg>
+            </button>
+          </div>
+          <p class="form-note">Демо-версия: заявка проверяется на месте, но никуда не отправляется.</p>
+        </div>
+      </form>
+
+      <div class="success" id="success" aria-live="polite">
+        <svg width="56" height="56" viewBox="0 0 56 56" fill="none" aria-hidden="true">
+          <circle class="check-ring" cx="28" cy="28" r="23.5" stroke="#1C6E78" stroke-width="1.2"/>
+          <path class="check-tick" d="M17 28.5l7 7 15-15" stroke="#1C6E78" stroke-width="1.6"/>
+        </svg>
+        <p class="micro">Заявка принята</p>
+        <p class="success__no" id="reqNo"></p>
+        <h2 id="successTitle">До встречи<br><em>на воде.</em></h2>
+        <p id="successText">Спасибо! Мы получили заявку.</p>
+        <button class="btn btn--ink" type="button" data-close-modal>Закрыть</button>
+        <small>Демо-версия: данные не отправляются на сервер.</small>
+      </div>
+    </div>
+  </div>
+</div>
+
+<noscript><style>[data-reveal]{opacity:1;transform:none}.peek{display:none}</style></noscript>
+
+<script>
+(function(){
+  'use strict';
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+  /* ---------- header ---------- */
+  var head = document.getElementById('siteHead');
+  function onScrollHead(){
+    if (window.scrollY > 40) head.classList.add('is-solid');
+    else head.classList.remove('is-solid');
+  }
+  onScrollHead();
+  window.addEventListener('scroll', onScrollHead, {passive:true});
+
+  /* ---------- mobile menu ---------- */
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('mobileMenu');
+  var menuClose = document.getElementById('menuClose');
+
+  function setMenu(open){
+    menu.classList.toggle('is-open', open);
+    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
+    document.documentElement.classList.toggle('lock', open || modal.classList.contains('is-open'));
+    if (open) menuClose.focus();
+    else burger.focus();
+  }
+  burger.addEventListener('click', function(){ setMenu(!menu.classList.contains('is-open')); });
+  menuClose.addEventListener('click', function(){ setMenu(false); });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ setMenu(false); });
+  });
+
+  /* ---------- reveal ---------- */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+  if ('IntersectionObserver' in window && !reduceMotion.matches){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-in'); });
+  }
+
+  /* ---------- current section in nav ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
+  var secMap = {};
+  navLinks.forEach(function(a){
+    var sec = document.getElementById(a.getAttribute('href').slice(1));
+    if (sec) secMap[sec.id] = a;
+  });
+  if ('IntersectionObserver' in window){
+    var navIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (!en.isIntersecting) return;
+        navLinks.forEach(function(a){ a.classList.remove('is-active'); a.removeAttribute('aria-current'); });
+        var link = secMap[en.target.id];
+        if (link){ link.classList.add('is-active'); link.setAttribute('aria-current','true'); }
+      });
+    }, {rootMargin:'-40% 0px -55% 0px', threshold:0});
+    Object.keys(secMap).forEach(function(id){ navIO.observe(document.getElementById(id)); });
+  }
+
+  function clearNavIfTop(){
+    var first = document.getElementById('index');
+    if (first && window.scrollY < first.offsetTop - window.innerHeight * 0.4){
+      navLinks.forEach(function(a){ a.classList.remove('is-active'); a.removeAttribute('aria-current'); });
+    }
+  }
+  window.addEventListener('scroll', clearNavIfTop, {passive:true});
+  clearNavIfTop();
+
+  /* ---------- count-up numbers ---------- */
+  var counters = Array.prototype.slice.call(document.querySelectorAll('[data-count]'));
+  function runCount(el){
+    var target = Number(el.getAttribute('data-count'));
+    if (reduceMotion.matches || !isFinite(target)){ el.textContent = el.getAttribute('data-count'); return; }
+    var t0 = null, dur = 1200;
+    function tick(ts){
+      if (!t0) t0 = ts;
+      var p = Math.min(1, (ts - t0) / dur);
+      var eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = String(Math.round(target * eased));
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+  if ('IntersectionObserver' in window && counters.length && !reduceMotion.matches){
+    counters.forEach(function(el){ el.textContent = '0'; });
+    var cIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting){ runCount(en.target); cIO.unobserve(en.target); }
+      });
+    }, {threshold:0.4});
+    counters.forEach(function(el){ cIO.observe(el); });
+  }
+
+  /* ---------- parallax (light) ---------- */
+  var plx = Array.prototype.slice.call(document.querySelectorAll('.manifesto__bg, .corp__bg'));
+  function updateParallax(){
+    if (reduceMotion.matches || window.innerWidth < 900) {
+      plx.forEach(function(img){ img.style.transform = ''; });
+      return;
+    }
+    var vh = window.innerHeight;
+    plx.forEach(function(img){
+      var box = img.parentElement.getBoundingClientRect();
+      if (box.bottom < -100 || box.top > vh + 100) return;
+      var progress = (box.top + box.height / 2 - vh / 2) / vh;
+      var shift = progress * box.height * 0.055;
+      img.style.transform = 'translate3d(0,' + shift.toFixed(2) + 'px,0)';
+    });
+  }
+  var plxTick = false;
+  function requestParallax(){
+    if (plxTick) return;
+    plxTick = true;
+    requestAnimationFrame(function(){ updateParallax(); plxTick = false; });
+  }
+  window.addEventListener('scroll', requestParallax, {passive:true});
+  window.addEventListener('resize', requestParallax);
+  updateParallax();
+
+  /* ---------- route hover preview ---------- */
+  var peek = document.getElementById('peek');
+  var peekImg = document.getElementById('peekImg');
+  var peekName = document.getElementById('peekName');
+  var peekKm = document.getElementById('peekKm');
+  var routes = Array.prototype.slice.call(document.querySelectorAll('.route'));
+  var peekOn = false, peekRaf = 0;
+  var px = 0, py = 0, tx = 0, ty = 0, tilt = 0, tTilt = 0;
+
+  function peekLoop(){
+    px += (tx - px) * 0.16;
+    py += (ty - py) * 0.16;
+    tilt += (tTilt - tilt) * 0.1;
+    var pw = peek.offsetWidth || 320, ph = peek.offsetHeight || 400;
+    var cx = Math.min(Math.max(px - pw / 2, 12), window.innerWidth - pw - 12);
+    var cy = Math.min(Math.max(py - ph - 28, 12), window.innerHeight - ph - 12);
+    peek.style.transform = 'translate3d(' + cx.toFixed(1) + 'px,' + cy.toFixed(1) + 'px,0) rotate(' + tilt.toFixed(2) + 'deg)';
+    peekRaf = peekOn ? requestAnimationFrame(peekLoop) : 0;
+  }
+
+  routes.forEach(function(row){
+    row.addEventListener('pointerenter', function(e){
+      if (!finePointer.matches || reduceMotion.matches) return;
+      peekImg.src = row.getAttribute('data-img');
+      peekName.textContent = row.getAttribute('data-book');
+      peekKm.textContent = row.getAttribute('data-km') || '';
+      tx = px = e.clientX; ty = py = e.clientY;
+      peekOn = true;
+      peek.classList.add('is-on');
+      if (!peekRaf) peekRaf = requestAnimationFrame(peekLoop);
+    });
+    row.addEventListener('pointermove', function(e){
+      if (!peekOn) return;
+      tTilt = Math.max(-4, Math.min(4, (e.movementX || 0) * 0.6));
+      tx = e.clientX;
+      ty = e.clientY;
+    });
+    row.addEventListener('pointerleave', function(){
+      peekOn = false;
+      peek.classList.remove('is-on');
+      tTilt = 0;
+    });
+  });
+
+  /* ---------- preload route previews ---------- */
+  function preloadPeeks(){
+    routes.forEach(function(r){
+      var im = new Image();
+      im.src = r.getAttribute('data-img');
+    });
+  }
+  if ('requestIdleCallback' in window) window.requestIdleCallback(preloadPeeks, {timeout: 2500});
+  else window.setTimeout(preloadPeeks, 1200);
+
+  /* ---------- booking modal ---------- */
+  var modal = document.getElementById('modal');
+  var modalBody = document.getElementById('modalBody');
+  var form = document.getElementById('bookingForm');
+  var routeSelect = document.getElementById('fRoute');
+  var dateInput = document.getElementById('fDate');
+  var nameInput = document.getElementById('fName');
+  var phoneInput = document.getElementById('fPhone');
+  var peopleInput = document.getElementById('fPeople');
+  var successText = document.getElementById('successText');
+  var success = document.getElementById('success');
+  var lastFocus = null;
+
+  function todayISO(){
+    var d = new Date();
+    var off = d.getTimezoneOffset() * 60000;
+    return new Date(d.getTime() - off).toISOString().slice(0,10);
+  }
+  dateInput.min = todayISO();
+
+  function lockPage(lock){
+    document.documentElement.classList.toggle('lock', lock || menu.classList.contains('is-open'));
+  }
+
+  function openModal(routeName){
+    lastFocus = document.activeElement;
+    modalBody.classList.remove('is-sent');
+    modal.setAttribute('aria-labelledby','modalTitle');
+    form.reset();
+    peopleInput.value = 2;
+    clearErrors();
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    lockPage(true);
+    document.body.style.overflow = 'hidden';
+    if (routeName) routeSelect.value = routeName;
+    window.setTimeout(function(){ nameInput.focus(); }, 120);
+  }
+
+  function closeModal(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+    lockPage(menu.classList.contains('is-open'));
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+    window.setTimeout(function(){
+      if (!modal.classList.contains('is-open')){
+        modalBody.classList.remove('is-sent');
+        form.reset();
+        peopleInput.value = 2;
+        clearErrors();
+      }
+    }, 380);
+  }
+
+  document.querySelectorAll('[data-open-booking]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      if (menu.classList.contains('is-open')) setMenu(false);
+      openModal(btn.getAttribute('data-route') || '');
+    });
+  });
+
+  document.querySelectorAll('[data-close-modal]').forEach(function(el){
+    el.addEventListener('click', closeModal);
+  });
+
+  routes.forEach(function(row){
+    row.addEventListener('click', function(e){
+      e.preventDefault();
+      openModal(row.getAttribute('data-book'));
+    });
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape'){
+      if (modal.classList.contains('is-open')) closeModal();
+      else if (menu.classList.contains('is-open')) setMenu(false);
+    }
+    if (e.key !== 'Tab') return;
+    var trapRoot = modal.classList.contains('is-open') ? modal : (menu.classList.contains('is-open') ? menu : null);
+    if (!trapRoot) return;
+    var focusables = trapRoot.querySelectorAll('button, input, select, textarea, [href], [tabindex]:not([tabindex="-1"])');
+    var list = Array.prototype.filter.call(focusables, function(el){
+      return !el.disabled && el.offsetParent !== null;
+    });
+    if (!list.length) return;
+    var first = list[0], last = list[list.length - 1];
+    if (e.shiftKey && document.activeElement === first){ e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+  });
+
+  /* form validation + success */
+  function fieldOf(input){ return input.closest('.field'); }
+  function setError(input, on){
+    fieldOf(input).classList.toggle('has-error', on);
+    input.setAttribute('aria-invalid', on ? 'true' : 'false');
+    var err = fieldOf(input).querySelector('.field__err');
+    if (err){
+      if (!err.id) err.id = 'err-' + input.id;
+      if (on) input.setAttribute('aria-describedby', err.id);
+      else input.removeAttribute('aria-describedby');
+    }
+  }
+  function clearErrors(){
+    form.querySelectorAll('.field.has-error').forEach(function(f){ f.classList.remove('has-error'); });
+  }
+  [nameInput, phoneInput, routeSelect, dateInput, peopleInput].forEach(function(input){
+    input.addEventListener('input', function(){ setError(input, false); });
+    input.addEventListener('change', function(){ setError(input, false); });
+  });
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    clearErrors();
+    var ok = true;
+    var firstBad = null;
+
+    if (nameInput.value.trim().length < 2){ setError(nameInput, true); ok = false; firstBad = firstBad || nameInput; }
+    var digits = phoneInput.value.replace(/\D/g,'');
+    if (digits.length < 9){ setError(phoneInput, true); ok = false; firstBad = firstBad || phoneInput; }
+    if (!routeSelect.value){ setError(routeSelect, true); ok = false; firstBad = firstBad || routeSelect; }
+    if (!dateInput.value || dateInput.value < todayISO()){ setError(dateInput, true); ok = false; firstBad = firstBad || dateInput; }
+    if (!peopleInput.value || Number(peopleInput.value) < 1){ setError(peopleInput, true); ok = false; firstBad = firstBad || peopleInput; }
+
+    if (!ok){ if (firstBad) firstBad.focus(); return; }
+
+    var dateText;
+    try {
+      dateText = new Date(dateInput.value + 'T00:00:00').toLocaleDateString('ru-RU', {day:'numeric', month:'long'});
+    } catch(err){ dateText = dateInput.value; }
+
+    var people = Number(peopleInput.value);
+    var reqNo = 'НТ-' + new Date().getFullYear() + '-' + String(Math.floor(1000 + Math.random() * 9000));
+    document.getElementById('reqNo').textContent = 'Заявка № ' + reqNo;
+    successText.innerHTML = 'Спасибо, <b>' + escapeHtml(nameInput.value.trim()) + '</b>! Заявка на «' +
+      escapeHtml(routeSelect.value) + '» — ' + escapeHtml(dateText) + ', ' +
+      people + ' ' + peopleWord(people) + '. Мы позвоним на ' + escapeHtml(phoneInput.value.trim()) + '.';
+    modalBody.classList.add('is-sent');
+    modal.setAttribute('aria-labelledby','successTitle');
+    window.setTimeout(function(){ success.querySelector('h2').setAttribute('tabindex','-1'); success.querySelector('h2').focus(); }, 100);
+  });
+
+  function escapeHtml(s){
+    return s.replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+  function peopleWord(n){
+    var n10 = n % 10, n100 = n % 100;
+    if (n10 === 1 && n100 !== 11) return 'человек';
+    if (n10 >= 2 && n10 <= 4 && (n100 < 12 || n100 > 14)) return 'человека';
+    return 'человек';
+  }
+
+  /* ---------- horizontal gallery: drag, buttons, keys ---------- */
+  var track = document.querySelector('.frames__track');
+  var prevBtn = document.getElementById('framePrev');
+  var nextBtn = document.getElementById('frameNext');
+  if (track){
+    function frameStep(){
+      var f = track.querySelector('.frame');
+      if (!f) return track.clientWidth * 0.6;
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 24;
+      return f.getBoundingClientRect().width + gap;
+    }
+    function updateNav(){
+      if (!prevBtn || !nextBtn) return;
+      var max = track.scrollWidth - track.clientWidth - 2;
+      prevBtn.disabled = track.scrollLeft <= 2;
+      nextBtn.disabled = track.scrollLeft >= max;
+    }
+    function slide(dir){
+      track.scrollBy({left: dir * frameStep(), behavior: reduceMotion.matches ? 'auto' : 'smooth'});
+    }
+    if (prevBtn) prevBtn.addEventListener('click', function(){ slide(-1); });
+    if (nextBtn) nextBtn.addEventListener('click', function(){ slide(1); });
+    track.addEventListener('scroll', updateNav, {passive:true});
+    window.addEventListener('resize', updateNav);
+    updateNav();
+
+    track.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowRight'){ slide(1); e.preventDefault(); }
+      if (e.key === 'ArrowLeft'){ slide(-1); e.preventDefault(); }
+    });
+
+    var dragging = false, dragX = 0, dragScroll = 0, moved = 0;
+    track.addEventListener('pointerdown', function(e){
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      dragging = true; moved = 0;
+      dragX = e.clientX; dragScroll = track.scrollLeft;
+      track.classList.add('is-dragging');
+      track.setPointerCapture(e.pointerId);
+    });
+    track.addEventListener('pointermove', function(e){
+      if (!dragging) return;
+      var dx = e.clientX - dragX;
+      moved = Math.max(moved, Math.abs(dx));
+      track.scrollLeft = dragScroll - dx;
+    });
+    function endDrag(e){
+      if (!dragging) return;
+      dragging = false;
+      track.classList.remove('is-dragging');
+      if (e.pointerId !== undefined && track.hasPointerCapture && track.hasPointerCapture(e.pointerId)){
+        track.releasePointerCapture(e.pointerId);
+      }
+      updateNav();
+    }
+    track.addEventListener('pointerup', endDrag);
+    track.addEventListener('pointercancel', endDrag);
+    track.addEventListener('click', function(e){
+      if (moved > 6){ e.preventDefault(); e.stopPropagation(); }
+    }, true);
+  }
+
+})();
+</script>
+</body>
+</html>
